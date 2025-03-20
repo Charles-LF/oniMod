@@ -1,6 +1,7 @@
 ﻿using HarmonyLib;
 using KMod;
 using System.Reflection;
+using UnityEngine;
 
 namespace loveFromWiki
 {
@@ -20,19 +21,17 @@ namespace loveFromWiki
                 string tabName = "WIKITAB";
                 string title = "WIKI";
                 string desc = "<b>查看WIKI</b>\n爱来自缺氧中文维基";
-                bool lang = Localization.GetCurrentLanguageCode() == "zh";
+
+                // 使用反射获取 simpleInfoScreen 字段的信息
+                FieldInfo simpleInfoScreenField = typeof(DetailTabHeader).GetField("simpleInfoScreen", BindingFlags.NonPublic | BindingFlags.Instance);
+                // 获取 simpleInfoScreen 字段实际存储的 GameObject 类型的值
+                GameObject simpleInfoScreen = simpleInfoScreenField != null ? (GameObject)simpleInfoScreenField.GetValue(__instance) : null;
 
                 // 使用反射调用私有方法 MakeTab
                 MethodInfo makeTabMethod = typeof(DetailTabHeader).GetMethod("MakeTab", BindingFlags.NonPublic | BindingFlags.Instance);
-                FieldInfo simpleInfoScreenField = typeof(DetailTabHeader).GetType().GetField("simpleInfoScreen", BindingFlags.NonPublic | BindingFlags.Instance);
-
                 if (makeTabMethod != null)
                 {
-                    if (!lang)
-                    {
-                        makeTabMethod.Invoke(__instance, new object[] { tabName, title, Assets.GetSprite("icon_display_screen_properties"), "<b>LearnWIKI</b>\n Love from the ONI Wiki.", simpleInfoScreenField });
-                    }
-                    makeTabMethod.Invoke(__instance, new object[] { tabName, title, Assets.GetSprite("icon_display_screen_properties"), desc, simpleInfoScreenField });
+                    makeTabMethod.Invoke(__instance, new object[] { tabName, title, Assets.GetSprite("icon_display_screen_properties"), desc, simpleInfoScreen });
                 }
             }
         }
