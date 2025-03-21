@@ -21,20 +21,30 @@ namespace loveFromWiki
                 string tabName = "WIKITAB";
                 string title = "WIKI";
                 string desc = "<b>查看WIKI</b>\n爱来自缺氧中文维基";
-
-                // 使用反射获取 simpleInfoScreen 字段的信息
-                FieldInfo simpleInfoScreenField = typeof(DetailTabHeader).GetField("simpleInfoScreen", BindingFlags.NonPublic | BindingFlags.Instance);
-                // 获取 simpleInfoScreen 字段实际存储的 GameObject 类型的值
-                GameObject simpleInfoScreen = simpleInfoScreenField != null ? (GameObject)simpleInfoScreenField.GetValue(__instance) : null;
-
+                // 初始化wikiScreen
+                GameObject wikiGameObject = new GameObject();
+                WikiScreen wikiScreen = wikiGameObject.AddComponent<WikiScreen>();
                 // 使用反射调用私有方法 MakeTab
                 MethodInfo makeTabMethod = typeof(DetailTabHeader).GetMethod("MakeTab", BindingFlags.NonPublic | BindingFlags.Instance);
                 if (makeTabMethod != null)
                 {
-                    makeTabMethod.Invoke(__instance, new object[] { tabName, title, Assets.GetSprite("icon_display_screen_properties"), desc, simpleInfoScreen });
+                    Sprite sprite = Assets.GetSprite("icon_display_screen_properties");
+                    if (sprite == null)
+                    {
+                        Debug.LogError("未能获取到指定的精灵图！");
+                        return;
+                    }
+                    // 检查 wikiScreen 是否为 null
+                    if (wikiScreen == null)
+                    {
+                        Debug.LogError("wikiScreen 未正确初始化！");
+                        return;
+                    }
+                    Debug.Log($"即将调用 MakeTab 方法，wikiScreen 是否为 null: {wikiScreen == null}");
+                    // 传递WikiScreen组件所在的GameObject
+                    makeTabMethod.Invoke(__instance, new object[] { tabName, title, sprite, desc, wikiScreen.gameObject });
                 }
             }
         }
     }
 }
-
