@@ -31,7 +31,7 @@ namespace loveFromWiki
                     Sprite sprite = Assets.GetSprite("icon_display_screen_properties");
                     if (sprite == null)
                     {
-                        Debug.LogError("未能获取到指定的精灵图！");
+                        Debug.LogError("未能获取到指定的图！");
                         return;
                     }
                     // 检查 wikiScreen 是否为 null
@@ -40,7 +40,7 @@ namespace loveFromWiki
                         Debug.LogError("wikiScreen 未正确初始化！");
                         return;
                     }
-                    Debug.Log($"即将调用 MakeTab 方法，wikiScreen 是否为 null: {wikiScreen == null}");
+                    //Debug.Log($"即将调用 MakeTab 方法，wikiScreen 是否为 null: {wikiScreen == null}");
                     // 传递WikiScreen组件所在的GameObject
                     makeTabMethod.Invoke(__instance, new object[] { tabName, title, sprite, desc, wikiScreen.gameObject });
                 }
