@@ -16,17 +16,13 @@ namespace loveFromWiki
         {
             base.OnPrefabInit();
             this.wikiPanel = base.CreateCollapsableSection("WIKI面板");
-            this.wikiPanel.GetComponent<VerticalLayoutGroup>().padding.bottom = 20;
-            this.wikiPanel.Content.GetComponent<VerticalLayoutGroup>().padding.top = 10;
-            this.wikiPanel.Content.GetComponent<VerticalLayoutGroup>().padding.bottom = 10;
-            this.wikiPanel.scalerMask.hoverLock = true;
-            base.Subscribe<WikiScreen>(-1514841199, WikiScreen.OnRefreshDataDelegate);
+            this.wikiPanel.GetComponent<Transform>().localPosition = new Vector3(0, -20, 0);
+
         }
         protected override void OnSelectTarget(GameObject target) 
         {
             base.OnSelectTarget(target);
             this.wikiPanel.gameObject.SetActive(true);
-            //this.wikiPanel.scalerMask.UpdateSize();
             this.Refresh(true);
 
         }
@@ -44,6 +40,7 @@ namespace loveFromWiki
             string itemName = "";
             targetPanel.SetActive(true);
             string baseurl = "https://wiki.biligame.com/oni/";
+            string ggurl = "https://oxygennotincluded.wiki.gg/zh/";
             if (targetEntity != null)
             {
                 // targetEntity.GetComponent<KSelectable>()?.GetName() ?? " "  拿游戏内的名字
@@ -60,23 +57,18 @@ namespace loveFromWiki
                 }
             }
             //targetPanel.SetLabel("url1", baseurl, baseurl);
+            //targetPanel.SetLabel("WIKI", "搞不懂这个怎么布局，下面两个可以点","太难了，什么鬼东西啊");
             targetPanel.SetLabelWithButton("BWIKI", "跳转到BWIKI镜像站点", "跳转到镜像站点", delegate
             {
                 Process.Start(new ProcessStartInfo(baseurl + itemName) { UseShellExecute = true });
+            });
+            targetPanel.SetLabelWithButton("GGWIKI", "跳转到WIKIGG源站点", "跳转到WIKIGG源站点", delegate
+            {
+                Process.Start(new ProcessStartInfo(ggurl + itemName) { UseShellExecute = true });
             });
             targetPanel.Commit();
         }
         
         public CollapsibleDetailContentPanel wikiPanel;
-
-        private static readonly EventSystem.IntraObjectHandler<WikiScreen> OnRefreshDataDelegate = new EventSystem.IntraObjectHandler<WikiScreen>(delegate (WikiScreen component, object data)
-        {
-            component.OnRefreshData(data);
-        });
-
-        private void OnRefreshData(object obj)
-        {
-            this.Refresh(false);
-        }
     }
 }

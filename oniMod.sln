@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "loveFromWiki", "loveFromWik
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IceBox", "IceBox\IceBox.csproj", "{8BB2D7A3-3569-4625-82DD-5E97B96FB468}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ONITest", "ONITest\ONITest.csproj", "{082EE74C-0B87-424E-9B38-2FA083F8EE03}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{8BB2D7A3-3569-4625-82DD-5E97B96FB468}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8BB2D7A3-3569-4625-82DD-5E97B96FB468}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8BB2D7A3-3569-4625-82DD-5E97B96FB468}.Release|Any CPU.Build.0 = Release|Any CPU
+		{082EE74C-0B87-424E-9B38-2FA083F8EE03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{082EE74C-0B87-424E-9B38-2FA083F8EE03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{082EE74C-0B87-424E-9B38-2FA083F8EE03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{082EE74C-0B87-424E-9B38-2FA083F8EE03}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
