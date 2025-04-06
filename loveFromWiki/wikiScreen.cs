@@ -1,7 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Text.RegularExpressions;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace loveFromWiki
 {
