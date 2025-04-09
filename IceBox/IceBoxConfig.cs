@@ -15,7 +15,7 @@ namespace IceBox
             string anim = "icebox_kanim";
             int hitpoints = 30;
             float construction_time = 10f;
-            float[] tier = STRINGS.BUILDINGS.CONSTRUCTION_MASS_KG.TIER4;
+            float[] tier = new []{3f};
             string[] raw_MINERALS = MATERIALS.RAW_MINERALS;
             float melting_point = 800f;
             BuildLocationRule build_location_rule = BuildLocationRule.OnFloor;
